@@ -2,7 +2,7 @@
 * @Author: Sing-V
 * @Date:   2018-05-05 10:34:21
 * @Last Modified by:   Sing-V
-* @Last Modified time: 2018-07-23 01:39:08
+* @Last Modified time: 2018-07-23 22:34:39
 */
 *{
 	margin: 0;
@@ -84,7 +84,7 @@ body{
 	transition: all 0.6s;
 	overflow: hidden;
 	z-index: 12;
-	background-color: pink;
+	background-color: white;
 }
 .header .shop a:hover{
 	background-color: white;
@@ -105,6 +105,7 @@ body{
 	height: 100px;
 	margin: 0 auto;
 
+
 }
 .bigBox .logoBox .logo{
 	width: 55px;
@@ -116,30 +117,79 @@ body{
 	background-position: center;
 }
 
+
+
 .bigBox .logoBox .nav .xia .logoCon{
-    width: 1903px;
-    height: 0;
+    width: 100%;
+    height: 0px;
     position: absolute;
     top: 140px;
     left: 0;
+    display: block;
     transition: all 0.5s;
     overflow: hidden;
-    background-color: red;
-    z-index: 11;
+    z-index: 21;
+    
+}
+.imgBox1{
+	width: auto;
+	height: 110px;
+	margin: 0 auto;
+	border-left: 1px solid #ccc;
+	cursor: pointer;
+}
+.box10{
+	border-left: 0px;
+}
+
+.list-title{
+	width: auto;
+	height: auto;
+	text-align: center;
+	font-size: 14px;
+	margin-top: 5px;
+	line-height: 25px;
+	padding: 5px 0;
+	cursor: pointer;
+}
+
+
+.children-list{
+	width: 1226px;
+	height: 230px;
+	margin: 0 auto;
+}
+.children-list>li{
+	width: 178px;
+	height: auto;
+	float: left;
+	position: relative;
+	padding: 35px 12px 0 12px;	
+}
+
+.children-list li>p{
+	display: block;
+	width: 100%;
+	height: 20px;
+	color: #ff6700;
+	font-size: 13px;
+	margin: 0 auto;
+	text-align: center;
+
 }
 .bigBox .nav{
 	float: left;
 	width: auto;
 	margin-left: 193px;
 	height: 100px;
-	line-height: 100px;
+	margin-top: 25px;
 	text-align: left
 }
 .bigBox .logoBox .nav .xia{
-    width: 65px;
+    width: auto;
     height: 100px;
     float: left;
-    transition:all 1s;
+
 }
 .bigBox .nav .xia a{
 	color: black;
@@ -172,17 +222,18 @@ body{
 	line-height: 50px;
 	float: left;
 	position: relative;
-	border: 1px solid #e0e0e0;
 	border-right:0;
 	transition: all 0.3s;
 }
 .bigBox .input .search-text .con{
-	width: 108px;
-	height: 21px;
+	width: 243px;
+	height: 48px;
 	position: absolute;
-	right: 8px;
+	right: 0;
 	top: 0;
 	bottom: 0;
+	outline: none;
+	border: 1px solid rgba(0,0,0, 0.3);
 	margin: auto 0;
 }
 .bigBox .input .search-text .con .son{
@@ -223,11 +274,15 @@ body{
 	left: 0;
 	top: 0;
 }
-.bigBox .banner .warper{
+.warper{
 	width: 1226px;
 	height: 460px;
 }
-.bigBox .banner .warper a{
+.bigBox .banner .imgBox0{
+	width: 1226px;
+	height: 460px;
+}
+.bigBox .banner .imgBox0 a{
 	display: block;
 	width: 1226px;
 	height: 460px;
@@ -282,6 +337,23 @@ body{
 	z-index: 9;
 	display: none;
 	background-color: white;
+	box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+.pullRight .link {
+	width: 255px;
+	height: 41px;
+    display: block;
+    float: left;
+    padding: 18px 20px;
+    line-height: 41px;	
+    color: #333;
+    transition: color .2s;
+}
+.pullRight .text{
+	line-height: 41px;
+	margin-right: 160px;
+	float: right;
+	margin-bottom: 20px;
 }
 .bigBox .banner .aside .neiKuai .cha:hover{
 	background-color: #ff6700;
@@ -547,6 +619,11 @@ body{
 	margin-left: 20px;	
 }
 
+.goods .top>ul li:first-child, .zhineng .top>ul li:first-child{
+	color: #ff6700;
+	padding-bottom: 32px;
+	border-bottom:2px solid #ff6700;
+}
 .goods .con .rightCon, .zhineng .con .rightCon{
 	width: 992px;
 	height: 614px;
@@ -812,7 +889,11 @@ body{
 	cursor: pointer;
 	margin-left: 20px;	
 }
-
+.dapei .top>ul li:first-child{
+	color: #ff6700;
+	padding-bottom: 32px;
+	border-bottom:2px solid #ff6700;
+}
 
 .dapei .con{
 	width: 1226px;
@@ -1066,7 +1147,7 @@ body{
 .re .box:nth-child(2){
 	margin-left: 0px;
 }
-.re .box .imgBox1{
+.re .box .imgBox6{
 	margin:0 auto;	
 }
 .re .box>h3{
@@ -1291,13 +1372,13 @@ body{
 	background-color: #ff6700;
 	border-color: #ff6700;
 }
-.video.box>h3{
+.video.box>p{
 	margin-top: 20px;
 	font-weight: 400;
 	font-size: 14px;
 	color: #333;
 }
-.video .box h3:hover{
+.video .box>p:hover{
 	color: orange;
 	cursor: pointer;
 }
@@ -1538,6 +1619,7 @@ body{
 	right: 35px;
 	bottom: 71px;
 	box-sizing: border-box;
+	z-index: 25;
 }
 .rightBar ul{
 	width: 25px;

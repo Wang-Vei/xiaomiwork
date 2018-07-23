@@ -2,7 +2,7 @@
 * @Author: Sing-V
 * @Date:   2018-07-20 13:43:47
 * @Last Modified by:   Sing-V
-* @Last Modified time: 2018-07-23 01:27:30
+* @Last Modified time: 2018-07-23 21:45:03
 */
 window.onload=function(){
 	let shop=document.getElementsByClassName("shop")[0];
@@ -36,7 +36,7 @@ window.onload=function(){
 				pullRight[j].style.background="none";
 			}
 			pullRight[i].style.display="block";
-			pullRight[i].style.background="red";
+			pullRight[i].style.background="white";
 		}
 		cha[i].onmouseleave=function(){
 			pullRight[i].style.display="none";
@@ -45,7 +45,7 @@ window.onload=function(){
 
 
 
-
+		//导航下拉框
 	let bigBox=document.getElementsByClassName("bigBox")[0];
     let logoBox=bigBox.getElementsByClassName("logoBox")[0];
     let nav=logoBox.getElementsByClassName("nav")[0];
@@ -59,7 +59,7 @@ window.onload=function(){
 			}
             logoCon[i].style.display="block";
             logoCon[i].style.height="230px";
-            logoCon[i].style.background="red";
+            logoCon[i].style.background="white";
             logoCon[i].style.borderTop="1px solid #E0E0E0";
             logoCon[i].style.boxShadow="0 7px 6px rgba(0,0,0,0.2)";
         }
@@ -107,4 +107,68 @@ window.onload=function(){
 		hs(dapei);
 	
 	
+
+
+
+
+
+
+
+
+
+
+		//轮播图
+	let banner=document.getElementsByClassName("banner")[0];
+	let warper=banner.getElementsByClassName("warper")[0];
+	let imgBox0=warper.getElementsByClassName("imgBox0")[0];
+	let a=imgBox0.getElementsByTagName("a");
+	let prev=warper.getElementsByClassName("prev")[0];
+	let next=warper.getElementsByClassName("next")[0];
+
+
+
+	console.log(banner,warper,imgBox0,prev,next);
+
+	
+
+	let t=setInterval(move,2000);
+	let num=0;
+	function move(){
+		num++;
+		console.log(num);
+
+		if(num==a.length){
+			num=0;
+		}
+		for(let i=0;i<a.length;i++){
+			a[i].style.zIndex=5;
+		}
+		a[num].style.zIndex=10;
+	}
+	warper.onmouseenter=function(){
+		clearInterval(t);
+	}
+	warper.onmouseleave=function(){
+		t=setInterval(move,2000);
+	}
+	next.onclick=function(){
+		move();
+	}
+	
+	function move1(){
+		num--;
+		if(num<0){
+			num=a.length-1;
+		}
+		for(let j=0;j<a.length;j++){
+			a[j].style.zIndex=5;
+		}
+		a[num].style.zIndex=10;
+	}
+	prev.onclick=function(){
+		move1();
+	}
+
+
+
 }
