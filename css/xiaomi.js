@@ -2,12 +2,11 @@
 * @Author: Sing-V
 * @Date:   2018-07-20 13:43:47
 * @Last Modified by:   Sing-V
-* @Last Modified time: 2018-07-23 21:45:03
+* @Last Modified time: 2018-07-24 13:24:25
 */
 window.onload=function(){
 	let shop=document.getElementsByClassName("shop")[0];
 	let pullDown=shop.getElementsByClassName("pullDown")[0];
-	console.log(shop,pullDown);
 	
 	
 	
@@ -28,7 +27,6 @@ window.onload=function(){
 	let cha=document.getElementsByClassName("cha");[0]
 	let pullRight=document.getElementsByClassName("pullRight");
 
-	console.log(neiKuai,cha,pullRight);
 	for(let i=0;i<cha.length;i++){
 		cha[i].onmouseenter=function(){
 			for(let j=0;j<cha.length;j++){
@@ -51,7 +49,6 @@ window.onload=function(){
     let nav=logoBox.getElementsByClassName("nav")[0];
     let xia=nav.getElementsByClassName("xia");
     let logoCon=document.getElementsByClassName("logoCon");
-    console.log(xia,logoCon);
     for(let i=0;i<xia.length-2;i++){
     	xia[i].onmouseenter=function () {
 			for(let j=0;j<xia.length-2;j++){
@@ -83,7 +80,6 @@ window.onload=function(){
 			let li=ul.getElementsByTagName("li");
 			let con=xingcan.getElementsByClassName("con")[0];
 			let rightCon=con.getElementsByClassName("rightCon");
-			console.log(xingcan,top,ul,li,rightCon);
 	
 		for(let i=0;i<li.length;i++){
 			li[i].onmouseenter=function(){
@@ -118,56 +114,191 @@ window.onload=function(){
 
 
 		//轮播图
-	let banner=document.getElementsByClassName("banner")[0];
+
+
+
+	let list=document.querySelectorAll(".banner .warper .imgBox0 a");
+	let warper=document.getElementsByClassName("warper")[0];
+	let btns=document.querySelector(".warper .btns");
+	let son=btns.getElementsByClassName("son")
+	let zuo=document.querySelector(".prev");
+	let you=document.querySelector(".next");
+	widths=parseInt(getComputedStyle(warper,null).width);
+
+
+
+    console.log(list,widths,zuo,you,btns);
+
+    let now=0;
+    let next=0;
+    let flag=true;
+    let t=setInterval(move3,2000);
+    function move3() {
+        next++
+        if(next==list.length) {
+            next = 0;
+        }
+        for(i=0;i<son.length;i++){
+        	son[i].style.background="none";
+			}
+        	son[now].style.background="#fff";
+
+        list[next].style.left=widths+"px";
+        animate(list[now],{left:-widths},callback);
+        animate(list[next],{left:0},callback);
+        now=next;
+    }
+    function callback() {
+		flag=true;
+    }
+
+
+    function move4() {
+		next--;
+		if(next<0){
+			next=list.length-1;
+		}
+        for(i=0;i<son.length;i++){
+                son[i].style.background="none";
+            }
+            son[next].style.background="#fff";
+
+		list[now].style.left=0;
+		list[next].style.left=-widths+"px";
+		animate(list[now],{left:widths},callback);
+		animate(list[next],{left:0},callback);
+		now=next;
+    }
+    warper.onmouseenter=function(){
+    	clearInterval(t);
+	}
+	warper.onmouseleave=function() {
+       t = setInterval(move3, 2000);
+    }
+    zuo.onclick=function () {
+    	if(flag==false){
+    		return
+		}
+		else{
+    		flag=false;
+            move4();
+		}
+
+    	/*if(now==list.length-1){
+    		return;
+		}
+		else {
+		move4();
+        }*/
+    }
+    you.onclick=function () {
+    	if(flag==false || next==0){
+    		return;
+		}
+		else {
+    		flag=false;
+    		move3();
+		}
+       /* if(next==0){
+            return;
+        }
+        else{
+		move3();
+        }*/
+
+    }
+    for(let i=0;i<son.length;i++){
+	son[i].onclick=function () {
+    	if(i==now){
+    		return;
+		}
+		if(i<now){
+    		animate(list[i],{left:0});
+    		animate(list[now],{left:widths});
+		}
+		if(i>now){
+    		animate(list[i],{left:0});
+    		animate(list[now],{left:-widths});
+		}
+		for(j=0;j<list.length;j++){
+    		son[j].style.background="";
+
+		}
+        son[i].style.background="#fff";
+    	now=next=i;
+
+    	}
+    }
+
+
+    /*let banner=document.getElementsByClassName("banner")[0];
 	let warper=banner.getElementsByClassName("warper")[0];
 	let imgBox0=warper.getElementsByClassName("imgBox0")[0];
 	let a=imgBox0.getElementsByTagName("a");
 	let prev=warper.getElementsByClassName("prev")[0];
 	let next=warper.getElementsByClassName("next")[0];
+	let btns=document.getElementsByClassName("btns")[0];
+	let son=btns.getElementsByClassName("son");
+
+	console.log(banner,warper,imgBox0,prev,next,btns,son);
+
+    let t=setInterval(move,2000);
+    let num=0;
+    function move(){
+        num++;
+        console.log(num);
+
+        if(num==a.length){
+            num=0;
+        }
+        for(let i=0;i<a.length;i++){
+            a[i].style.zIndex=5;
+            son[i].style.background=0;
+
+        }
+        a[num].style.zIndex=10;
+        son[num].style.background="rgba(255,255,255,.9)";
+    }
+
+    warper.onmouseenter=function(){
+        clearInterval(t);
+    }
+    warper.onmouseleave=function(){
+        t=setInterval(move,2000);
+    }
+    next.onclick=function(){
+        move();
+    }
+
+    function move1(){
+        num--;
+        if(num<0){
+            num=a.length-1;
+        }
+        for(let j=0;j<a.length;j++){
+            a[j].style.zIndex=5;
+            son[j].style.background="rgba(255,255,255,.1)";
+        }
+        a[num].style.zIndex=10;
+        son[num].style.background="rgba(255,255,255,.9)";
+    }
+        prev.onclick=function(){
+        move1();
+    }
 
 
+        for(let i=0;i<son.length;i++){
+            son[i].onclick=function(){
+            for(let j=0;j<son.length;j++){
+                a[j].style.zIndex=5;
+                son[j].style.background="";
+                }
+            a[i].style.zIndex=10;
+            son[i].style.background="rgba(255,255,255,.9)";
+            num=i;
+        }
 
-	console.log(banner,warper,imgBox0,prev,next);
-
-	
-
-	let t=setInterval(move,2000);
-	let num=0;
-	function move(){
-		num++;
-		console.log(num);
-
-		if(num==a.length){
-			num=0;
-		}
-		for(let i=0;i<a.length;i++){
-			a[i].style.zIndex=5;
-		}
-		a[num].style.zIndex=10;
-	}
-	warper.onmouseenter=function(){
-		clearInterval(t);
-	}
-	warper.onmouseleave=function(){
-		t=setInterval(move,2000);
-	}
-	next.onclick=function(){
-		move();
-	}
-	
-	function move1(){
-		num--;
-		if(num<0){
-			num=a.length-1;
-		}
-		for(let j=0;j<a.length;j++){
-			a[j].style.zIndex=5;
-		}
-		a[num].style.zIndex=10;
-	}
-	prev.onclick=function(){
-		move1();
-	}
+    }*/
 
 
 

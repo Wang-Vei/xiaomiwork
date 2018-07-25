@@ -2,7 +2,7 @@
 * @Author: Sing-V
 * @Date:   2018-05-05 10:34:21
 * @Last Modified by:   Sing-V
-* @Last Modified time: 2018-07-23 22:34:39
+* @Last Modified time: 2018-07-24 13:19:14
 */
 *{
 	margin: 0;
@@ -270,6 +270,7 @@ body{
 	width: 1226px;
 	height: 460px;
 	margin: 0 auto;
+	overflow: hidden;
 	position: relative;
 	left: 0;
 	top: 0;
@@ -289,6 +290,9 @@ body{
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+.bigBox .banner .imgBox0 a.hot{
+	background: #fff;
 }
 .bigBox .banner .aside{
 	width: 234px;
@@ -394,7 +398,7 @@ body{
 	right: 30px;
 	bottom: 20px;
 }
-.bigBox .banner .btns .son a{
+.bigBox .banner .btns .son{
 	width: 6px;
 	height: 6px;
 	border: 2px solid #B5AFA5;
@@ -402,10 +406,13 @@ body{
 	float: left;
 	transition: all 0.5s;
 	border-radius: 50%;
+	cursor: pointer;
 	margin: 0 5px;
+
+
 }
-.bigBox .banner .btns .son a:hover{
-	background: rgba(255, 255, 255, 0.1);
+.son00{
+	background:#fff;
 }
 .bigBox .xia{
 	width: 1226px;
@@ -948,6 +955,14 @@ body{
 	opacity: 0.5;
 	background-color: #ff6700;
 }
+.dapei .con .rightCon{
+	width: 992px;
+	height: 614px;
+	position: absolute;
+	display: none;
+	top:0;
+	right: 0;
+}
 .dapei .con .right .box:nth-child(1):hover .info , .dapei .con .right .box:nth-child(2):hover .info , .dapei .con .right .box:nth-child(3):hover .info , .dapei .con .right .box:nth-child(4):hover .info , .dapei .con .right .box:nth-child(5):hover .info , .dapei .con .right .box:nth-child(6):hover .info , .dapei .con .right .box:nth-child(7):hover .info{
 	bottom: 0;
 	opacity: 1
@@ -1195,9 +1210,16 @@ body{
 	height: 420px;
 	float: left;
 	margin-left: 14px;
-	position: relative;
 	background-color: white;
+	position: relative;
 	box-sizing: border-box;
+	overflow: hidden;
+}
+.content .list{
+	width: 296px;
+	height: 420px;
+	background-color: white;
+	position: absolute;
 
 }
 .content .box:first-child{
@@ -1266,6 +1288,7 @@ body{
 	text-align: center;
 	position: relative;
 	line-height: 30px;
+	top: 370px;
 }
 .content .box .point ul {
 	width: 114px;
