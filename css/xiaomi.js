@@ -117,17 +117,14 @@ window.onload=function(){
 
 
 
-	let list=document.querySelectorAll(".banner .warper .imgBox0 a");
-	let warper=document.getElementsByClassName("warper")[0];
+	let warper=document.querySelector(" .warper");
+	let list=document.querySelectorAll(".warper .list");
 	let btns=document.querySelector(".warper .btns");
-	let son=btns.getElementsByClassName("son")
-	let zuo=document.querySelector(".prev");
+	let son=btns.getElementsByClassName("son");
+    let zuo=document.querySelector(".prev");
 	let you=document.querySelector(".next");
 	widths=parseInt(getComputedStyle(warper,null).width);
 
-
-
-    console.log(list,widths,zuo,you,btns);
 
     let now=0;
     let next=0;
@@ -145,7 +142,7 @@ window.onload=function(){
 
         list[next].style.left=widths+"px";
         animate(list[now],{left:-widths},callback);
-        animate(list[next],{left:0},callback);
+        animate(list[next],{left:0},);
         now=next;
     }
     function callback() {
@@ -158,15 +155,17 @@ window.onload=function(){
 		if(next<0){
 			next=list.length-1;
 		}
-        for(i=0;i<son.length;i++){
+        /*for(i=0;i<son.length;i++){
                 son[i].style.background="none";
             }
             son[next].style.background="#fff";
+*/
+        son[now].classList.remove("hot");
+        son[next].classList.add("hot");
 
-		list[now].style.left=0;
 		list[next].style.left=-widths+"px";
 		animate(list[now],{left:widths},callback);
-		animate(list[next],{left:0},callback);
+		animate(list[next],{left:0},);
 		now=next;
     }
     warper.onmouseenter=function(){
@@ -176,13 +175,13 @@ window.onload=function(){
        t = setInterval(move3, 2000);
     }
     zuo.onclick=function () {
-    	if(flag==false){
+    	/*if(flag==false || next==0){
     		return
 		}
-		else{
-    		flag=false;
+
+    		flag=false;*/
             move4();
-		}
+
 
     	/*if(now==list.length-1){
     		return;
@@ -192,19 +191,18 @@ window.onload=function(){
         }*/
     }
     you.onclick=function () {
-    	if(flag==false || next==0){
+    	/*if(flag==false){
     		return;
 		}
 		else {
     		flag=false;
     		move3();
 		}
-       /* if(next==0){
+        if(next==list.length-1) {
             return;
         }
-        else{
+        flag=false;*/
 		move3();
-        }*/
 
     }
     for(let i=0;i<son.length;i++){
@@ -301,5 +299,105 @@ window.onload=function(){
     }*/
 
 
+
+    //闪购
+
+	let bl=document.querySelector(".BL");
+	let br=document.querySelector(".BR");
+	let miList=document.querySelector(".ye");
+	let listWidth=parseInt(getComputedStyle(miList,null).width)/2;
+
+    let time=0
+    bl.onclick=function () {
+		time++;
+		if(time==2){
+			time=1;
+		}
+
+		miList.style.transform=`translateX(${-listWidth*time}px)`;
+
+    }
+    br.onclick=function () {
+        time--;
+        if(time<0){
+			time=0;
+        }
+
+        miList.style.transform=`translateX(${-listWidth*time}px)`;
+
+    }
+
+
+
+
+
+    let box=document.querySelector(".content .box");
+    let tcon=document.querySelectorAll(".tcon");
+    let turn=document.querySelectorAll(".content .tcon");
+    let you1= document.querySelector(".content .you");
+    let zuo1= document.querySelector(".content .zuo");
+    let btn=document.querySelectorAll(".point li");
+
+	Width=parseInt(getComputedStyle(box,null).width);
+    console.log(box, turn,Width,zuo1,you1,tcon);
+
+    let now1=0;
+    let next1=0;
+	you1.onclick=function () {
+		next1++;
+        if(next1>=tcon.length){
+            return;
+        }
+		tcon[next1].style.left=Width+"px";
+		animate(tcon[now1],{left:-Width});
+		animate(tcon[next1],{left:0});
+		now1=next1
+		for(i=0;i<btn.length;i++){
+            btn[i].style.backgroundColor="";
+            btn[now1].style.border="";
+
+        }
+
+        btn[now1].style.backgroundColor="#ff6700";
+
+
+    }
+    zuo1.onclick=function () {
+        next1--;
+        if(next1<0){
+            return;
+        }
+
+        tcon[next1].style.left=-Width+"px";
+        animate(tcon[now1],{left:Width});
+        animate(tcon[next1],{left:0});
+        now1=next1
+        for(i=0;i<btn.length;i++){
+            btn[i].style.backgroundColor="";
+        }
+        btn[now1].style.backgroundColor="#ff6700";
+    }
+
+
+		for(let i=0;i<btn.length;i++){
+		btn[i].onclick=function () {
+			if(i==now1){
+				return;
+			}
+			if(i<now1){
+				animate(tcon[i],{left:0});
+				animate(tcon[now1],{left:Width});
+			}
+            if(i>now1){
+                animate(tcon[i],{left:0});
+                animate(tcon[now1],{left:-Width});
+            }
+            for(j=0;j<tcon.length;j++){
+				btn[j].style.background="";
+			}
+			btn[i].style.background="#ff6700";
+			next1=next1=i;
+		}
+    }
 
 }
