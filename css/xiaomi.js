@@ -2,7 +2,7 @@
 * @Author: Sing-V
 * @Date:   2018-07-20 13:43:47
 * @Last Modified by:   Sing-V
-* @Last Modified time: 2018-07-24 13:24:25
+* @Last Modified time: 2018-07-30 21:52:14
 */
 window.onload=function(){
 	let shop=document.getElementsByClassName("shop")[0];
@@ -73,7 +73,7 @@ window.onload=function(){
 
 
 
-
+    
 	function hs(xingcan){
 			let top=xingcan.getElementsByClassName("top")[0];
 			let ul=top.getElementsByTagName("ul")[0];
@@ -139,10 +139,15 @@ window.onload=function(){
         	son[i].style.background="none";
 			}
         	son[now].style.background="#fff";
-
+        /*son[now].classList.remove("hot");
+        son[next].classList.add("hot");*/
         list[next].style.left=widths+"px";
         animate(list[now],{left:-widths},callback);
-        animate(list[next],{left:0},);
+        animate(list[next],{left:0},callback);
+
+        // function(){
+        	//
+		// }
         now=next;
     }
     function callback() {
@@ -155,17 +160,17 @@ window.onload=function(){
 		if(next<0){
 			next=list.length-1;
 		}
-        /*for(i=0;i<son.length;i++){
+        for(i=0;i<son.length;i++){
                 son[i].style.background="none";
             }
             son[next].style.background="#fff";
-*/
-        son[now].classList.remove("hot");
-        son[next].classList.add("hot");
+
 
 		list[next].style.left=-widths+"px";
+        /*son[now].classList.remove("hot");
+        son[next].classList.add("hot");*/
 		animate(list[now],{left:widths},callback);
-		animate(list[next],{left:0},);
+		animate(list[next],{left:0},callback);
 		now=next;
     }
     warper.onmouseenter=function(){
@@ -175,13 +180,16 @@ window.onload=function(){
        t = setInterval(move3, 2000);
     }
     zuo.onclick=function () {
-    	/*if(flag==false || next==0){
-    		return
-		}
-
-    		flag=false;*/
-            move4();
-
+    	
+            if(flag==false){
+                return;
+            }
+            else{
+                flag=false;
+                move4();
+                
+            }
+           
 
     	/*if(now==list.length-1){
     		return;
@@ -202,7 +210,14 @@ window.onload=function(){
             return;
         }
         flag=false;*/
-		move3();
+        if(flag==false){
+            return;
+        }
+        else{
+            flag=false;
+            move3();
+        }
+		
 
     }
     for(let i=0;i<son.length;i++){
@@ -328,18 +343,25 @@ window.onload=function(){
     }
 
 
+    let box=document.querySelectorAll(".content .box");
+    box.forEach(function(v){
+        fn22(v);
+    })
+  
 
 
 
-    let box=document.querySelector(".content .box");
-    let tcon=document.querySelectorAll(".tcon");
-    let turn=document.querySelectorAll(".content .tcon");
-    let you1= document.querySelector(".content .you");
-    let zuo1= document.querySelector(".content .zuo");
-    let btn=document.querySelectorAll(".point li");
 
-	Width=parseInt(getComputedStyle(box,null).width);
-    console.log(box, turn,Width,zuo1,you1,tcon);
+  //内容
+ function fn22(obj){
+    let tcon=obj.querySelectorAll(".tcon");
+    let turn=obj.querySelectorAll(".tcon");
+    let you1= obj.querySelector(".you");
+    let zuo1= obj.querySelector(".zuo");
+    let btn=obj.querySelectorAll(".point li");
+
+	Width=parseInt(getComputedStyle(obj,null).width);
+    // console.log(box, turn,Width,zuo1,you1,tcon);
 
     let now1=0;
     let next1=0;
@@ -363,11 +385,11 @@ window.onload=function(){
 
     }
     zuo1.onclick=function () {
-        next1--;
-        if(next1<0){
+
+        if(now1==0){
             return;
         }
-
+        next1--;
         tcon[next1].style.left=-Width+"px";
         animate(tcon[now1],{left:Width});
         animate(tcon[next1],{left:0});
@@ -399,5 +421,98 @@ window.onload=function(){
 			next1=next1=i;
 		}
     }
+
+}
+
+    
+
+
+
+
+
+    //推荐
+    let cl=document.querySelector(".cl");
+    let cr=document.querySelector(".cr");
+    let big=document.querySelector(".big");
+    let wb=parseInt(getComputedStyle(big,null).width)/3;
+
+    console.log(cl,cr,big,wb)
+    let time2=0
+    cr.onclick=function(){
+        time2++;
+         if(time2==3){
+            time2=2;
+        }
+        big.style.transform=`translateX(${-wb*time2}px)`;
+    }
+     cl.onclick=function () {
+        time2--;
+        if(time2<0){
+            time2=0;
+        }
+
+       big.style.transform=`translateX(${-wb*time2}px)`;
+
+    }
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+    times1();
+    setInterval(times1,1000);
+    function times1() {
+        let span=document.querySelectorAll(".dan a span");
+        let now=new Date();
+        let future=new Date(2018,6,31,24);
+        let time=(future-now)/1000;
+
+        let arr=[];
+/*
+        month=Math.floor(time/(31*24*60*60));
+        arr.push(month);
+
+        time=time%(31*24*60*60);
+        day=Math.floor(time/(24*60*60));
+        arr.push(day);
+*/
+
+        time=time%(24*60*60);
+        hour=Math.floor(time/(60*60));
+        if(hour>=1 && hour<=9){
+            hour="0"+hour;
+        }
+        arr.push(hour);
+
+        time=time%(60*60);
+        mine=Math.floor(time/60);
+        if(mine>=1 && mine<=9){
+            mine="0"+mine;
+        }
+        arr.push(mine);
+
+        s=Math.floor(time%60);
+        if(s>=1 && s<=9){
+            s="0"+s;
+        }
+        arr.push(s);
+
+        arr.forEach(function (element,index){
+            span[index].innerText=element;
+        });
+    }
+
 
 }
