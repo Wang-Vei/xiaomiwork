@@ -5,6 +5,69 @@
 * @Last Modified time: 2018-07-30 21:52:14
 */
 window.onload=function(){
+
+
+
+    let input=document.querySelector(".con1");
+    let icon=document.querySelector(".icon-sousuo");
+    let zong=document.querySelector(".input");
+    let con=document.querySelector(".con");
+    let exm=document.querySelectorAll(".exm");
+    let pullList=document.querySelector(".pullList");
+
+
+
+    console.log(pullList);
+    
+    
+    exm.onmouseenter=function(){
+        exm.style.background="#ff6700"
+    }
+
+    input.onfocus=function(){
+        zong.style.borderColor="#ff6700";
+        icon.style.borderColor="#ff6700";
+        exm[1].style.display="none";
+        exm[0].style.display="none";
+        pullList.style.display="block";
+
+    }
+    input.onblur=function(){
+        zong.style.borderColor="";
+        icon.style.borderColor="";
+        exm[0].style.display="block";
+        exm[1].style.display="block";
+        pullList.style.display="none";
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	let shop=document.getElementsByClassName("shop")[0];
 	let pullDown=shop.getElementsByClassName("pullDown")[0];
 	
@@ -436,7 +499,6 @@ window.onload=function(){
     let big=document.querySelector(".big");
     let wb=parseInt(getComputedStyle(big,null).width)/3;
 
-    console.log(cl,cr,big,wb)
     let time2=0
     cr.onclick=function(){
         time2++;
