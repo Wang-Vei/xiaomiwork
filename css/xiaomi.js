@@ -110,8 +110,8 @@ window.onload=function(){
 	let bigBox=document.getElementsByClassName("bigBox")[0];
     let logoBox=bigBox.getElementsByClassName("logoBox")[0];
     let nav=logoBox.getElementsByClassName("nav")[0];
-    let xia=nav.getElementsByClassName("xia");
-    let logoCon=document.getElementsByClassName("logoCon");
+    let xia=document.querySelectorAll(".nav .xia");
+    let logoCon=document.querySelectorAll(".logoCon");
     for(let i=0;i<xia.length-2;i++){
     	xia[i].onmouseenter=function () {
 			for(let j=0;j<xia.length-2;j++){
@@ -124,8 +124,8 @@ window.onload=function(){
             logoCon[i].style.boxShadow="0 7px 6px rgba(0,0,0,0.2)";
         }
         xia[i].onmouseleave=function () {
-            logoCon[i].style.display="none";
-            logoCon[i].style.height=0;
+            
+            logoCon[i].style.height=0;     
             logoCon[i].style.background="none";
             logoCon[i].style.boxShadow="none";
             logoCon[i].style.borderTop="none";
